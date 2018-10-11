@@ -1416,7 +1416,7 @@ oe_result_t oe_create_enclave(
     uint32_t flags,
     const void* config,
     uint32_t config_size,
-    void (**ocall_table)(void*),
+    const oe_ocall_func_t* ocall_table,
     uint32_t ocall_table_size,
     oe_enclave_t** enclave_out)
 {
@@ -1482,7 +1482,7 @@ oe_result_t oe_create_enclave(
 
     /* Enclave initialization invokes global constructors which could make
      * ocalls. Therefore setup ocall table prior to initialization. */
-    enclave->ocalls = (oe_ocall_func_t*)ocall_table;
+    enclave->ocalls = (const oe_ocall_func_t*)ocall_table;
     enclave->num_ocalls = ocall_table_size;
 
     /* Invoke enclave initialization. */

@@ -119,7 +119,7 @@ struct _oe_enclave
     size_t num_ecalls;
 
     /* Array of ocall functions */
-    oe_ocall_func_t* ocalls;
+    const oe_ocall_func_t* ocalls;
     size_t num_ocalls;
 
     /* Debug mode */
